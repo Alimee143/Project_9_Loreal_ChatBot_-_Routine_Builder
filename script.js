@@ -439,6 +439,112 @@ let chatHistory = [
   }
 ];
 
+// Store all products for filtering
+let allProducts = [];
+
+// Helper: Render products in grid based on filtered list
+function renderProductsGrid(products, productsGrid, selectedProducts = []) {
+  productsGrid.innerHTML = '';
+  products.forEach(product => {
+    // Use the same card for both pages
+    const card = createProductCard(product);
+
+    // Routine builder selection logic
+    if (selectedProducts && productsGrid.id === 'productsGrid') {
+      card.onclick = () => {
+        toggleProduct(product);
+      };
+      if (selectedProducts.find(p => p.id === product.id)) {
+        card.classList.add('selected');
+      }
+      const descBtn = card.querySelector('.desc-btn');
+      if (descBtn) {
+        descBtn.onclick = (e) => {
+          e.stopPropagation();
+          showProductPopup(product);
+        };
+      }
+    }
+
+    productsGrid.appendChild(card);
+  });
+}
+
+// Routine Builder: Load and filter products
+async function loadProducts() {
+  const productsGrid = document.getElementById('productsGrid');
+  const searchInput = document.getElementById('productSearch');
+  productsGrid.innerHTML = '<p>Loading products...</p>';
+
+  try {
+    const response = await fetch('products.json');
+    const data = await response.json();
+    allProducts = data.products;
+    // Initial render
+    renderProductsGrid(allProducts, productsGrid, selectedProducts);
+
+    // Search filter logic
+    if (searchInput) {
+      searchInput.oninput = function () {
+        const query = searchInput.value.trim().toLowerCase();
+        const filtered = allProducts.filter(product =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query)
+        );
+        renderProductsGrid(filtered, productsGrid, selectedProducts);
+      };
+    }
+  } catch (error) {
+    productsGrid.innerHTML = '<p>Sorry, we could not load the products.</p>';
+    console.error(error);
+  }
+}
+
+// Products Page: Load and filter products for products.html
+function setupProductsPageSearch() {
+  // Get the products grid and search input
+  const productsGrid = document.querySelector('.products-grid');
+  const searchInput = document.getElementById('productSearch');
+  if (!productsGrid || !searchInput) return;
+
+  // Use a local variable for allProducts to avoid conflicts
+  let allProductsLocal = [];
+
+  // Fetch products and enable search
+  (async () => {
+    productsGrid.innerHTML = '<p>Loading products...</p>';
+    try {
+      const response = await fetch('products.json');
+      const data = await response.json();
+      allProductsLocal = data.products;
+
+      // Helper to render products
+      function renderProducts(products) {
+        productsGrid.innerHTML = '';
+        products.forEach(product => {
+          const card = createProductCard(product);
+          productsGrid.appendChild(card);
+        });
+      }
+
+      // Initial render
+      renderProducts(allProductsLocal);
+
+      // Search filter logic
+      searchInput.addEventListener('input', function () {
+        const query = searchInput.value.trim().toLowerCase();
+        const filtered = allProductsLocal.filter(product =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query)
+        );
+        renderProducts(filtered);
+      });
+    } catch (error) {
+      productsGrid.innerHTML = '<p>Sorry, we could not load the products.</p>';
+    }
+  })();
+}
+
 // Load products from products.json
 async function loadProducts() {
   const response = await fetch('products.json');
@@ -741,6 +847,14 @@ function loadRoutineBuilderProducts() {
     document.body.setAttribute('dir', 'ltr');
   }
 })();
+
+// --- DOMContentLoaded for Products Page Search ---
+document.addEventListener("DOMContentLoaded", function () {
+  // Only run on products.html
+  if (document.querySelector('.products-grid') && document.getElementById('productSearch')) {
+    setupProductsPageSearch();
+  }
+});
 
 // Initial load
 updateSelectedList();

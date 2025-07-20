@@ -1,0 +1,96 @@
+<!--
+  contact.html - Contact L'Oréal
+  Modern, responsive, and beginner-friendly.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | L'Oréal</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Set a plain background color for the contact page -->
+    <style>
+      body {
+        background: #f7f7f7 !important;
+      }
+    </style>
+    <nav class="main-nav">
+      <div class="logo-area">
+        <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="contact-section" style="max-width: 700px; margin: 5.5rem auto 2rem auto; background: var(--loreal-white); box-shadow: 0 2px 12px rgba(191, 163, 124, 0.08); padding: 2.5rem 2rem; border-radius: 18px; text-align: center;">
+      <h1 style="color: var(--loreal-black); font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 1px;">Contact Us</h1>
+      <p style="font-size: 1.15rem; color: #444; margin-bottom: 1.5rem;">We'd love to hear from you! Please fill out the form below or chat with us.</p>
+      <form class="contact-form" style="display: flex; flex-direction: column; gap: 1.1rem; align-items: center;">
+        <div style="width: 100%; max-width: 420px; text-align: left;">
+          <label for="name" style="font-weight: 500; color: var(--loreal-black);">Name</label>
+          <input type="text" id="name" name="name" required style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-top: 4px; margin-bottom: 10px;" />
+          <label for="email" style="font-weight: 500; color: var(--loreal-black);">Email</label>
+          <input type="email" id="email" name="email" required style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-top: 4px; margin-bottom: 10px;" />
+          <label for="message" style="font-weight: 500; color: var(--loreal-black);">Message</label>
+          <textarea id="message" name="message" rows="4" required style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; margin-top: 4px; margin-bottom: 10px;"></textarea>
+        </div>
+        <button type="submit" style="background: var(--loreal-gold); color: var(--loreal-black); border: none; padding: 0.7rem 2.2rem; border-radius: 6px; font-size: 1.08rem; font-weight: 600; cursor: pointer; margin-top: 8px; transition: background 0.2s, color 0.2s;">Send</button>
+      </form>
+    </section>
+    <footer class="site-footer">
+      <p>&copy; 2025 L'Oréal. All rights reserved.</p>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </nav>
+    </footer>
+    <div id="chatbot-icon" title="Chat with us">
+      <span class="material-icons">smart_toy</span>
+    </div>
+    <div id="chatbot-window">
+      <div class="chatbot-header">
+        <span>Chat with L'Oréal</span>
+        <div>
+          
+          <button id="close-btn" title="Close" aria-label="Close">
+            <span class="material-icons">close</span>
+          </button>
+        </div>
+      </div>
+      <div class="chatbot-body">
+        <div id="chatWindow" class="chat-window">
+          <div class="msg ai">👋 Hello! My name is Lily, and I'm your L'Oréal virtual assistant! <br> How can I help you today?</div>
+        </div>
+        <form id="chatForm" class="chat-form">
+          <label for="userInput" class="visually-hidden">Message</label>
+          <input
+            id="userInput"
+            name="userInput"
+            type="text"
+            placeholder="Ask me anything…"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" id="sendBtn">
+            <span class="material-icons">send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

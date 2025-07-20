@@ -1,0 +1,91 @@
+<!--
+  about.html - Modern, responsive L'Oréal About page
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | L'Oréal</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="about-page">
+    <nav class="main-nav about-nav">
+      <div class="logo-area">
+        <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo about-logo" />
+      </div>
+      <ul class="nav-links about-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="about-section">
+      <h1>About L'Oréal</h1>
+      <p>
+        L'Oréal is a global leader in beauty and cosmetics, dedicated to bringing
+        luxury, science, and innovation to everyone. Our mission is to empower
+        confidence and celebrate individuality through high-quality products and
+        sustainable practices.
+      </p>
+      <p>
+        Since 1909, we've been committed to excellence, diversity, and
+        responsibility in everything we do.
+      </p>
+    </section>
+    <section class="overview-section">
+      <h2>L'Oréal at a Glance</h2>
+      <ul>
+        <li>Founded in 1909, headquartered in Paris, France</li>
+        <li>World’s largest cosmetics and beauty company</li>
+        <li>Present in over 150 countries</li>
+        <li>Over 35 global brands, including Lancôme, Garnier, Maybelline, and more</li>
+        <li>Leader in beauty innovation, research, and sustainability</li>
+        <li>Committed to diversity, inclusion, and empowering individuals worldwide</li>
+      </ul>
+    </section>
+    <div id="chatbot-icon" title="Chat with us">
+      <span class="material-icons">smart_toy</span>
+    </div>
+    <div id="chatbot-window">
+      <div class="chatbot-header">
+        <span>Chat with L'Oréal</span>
+        <div>
+          
+          <button id="close-btn" title="Close" aria-label="Close">
+            <span class="material-icons">close</span>
+          </button>
+        </div>
+      </div>
+      <div class="chatbot-body">
+        <div id="chatWindow" class="chat-window">
+          <div class="msg ai">👋 Hello! My name is Lily, and I'm your L'Oréal virtual assistant! <br> How can I help you today?</div>
+        </div>
+        <form id="chatForm" class="chat-form">
+          <label for="userInput" class="visually-hidden">Message</label>
+          <input
+            id="userInput"
+            name="userInput"
+            type="text"
+            placeholder="Ask me anything…"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" id="sendBtn">
+            <span class="material-icons">send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -450,13 +450,15 @@ function renderProductsGrid(products, productsGrid, selectedProducts = []) {
     const card = createProductCard(product);
 
     // Routine builder selection logic
-    if (selectedProducts && productsGrid.id === 'productsGrid') {
+    // Always allow selection/deselection if productsGrid is the routine builder grid
+    if (productsGrid.id === 'productsGrid') {
       card.onclick = () => {
         toggleProduct(product);
       };
       if (selectedProducts.find(p => p.id === product.id)) {
         card.classList.add('selected');
       }
+      // Show description popup if "Show Description" button exists
       const descBtn = card.querySelector('.desc-btn');
       if (descBtn) {
         descBtn.onclick = (e) => {
@@ -470,10 +472,9 @@ function renderProductsGrid(products, productsGrid, selectedProducts = []) {
   });
 }
 
-// Routine Builder: Load and filter products
+// Routine Builder: Load products (removed search bar logic)
 async function loadProducts() {
   const productsGrid = document.getElementById('productsGrid');
-  const searchInput = document.getElementById('productSearch');
   productsGrid.innerHTML = '<p>Loading products...</p>';
 
   try {
@@ -482,18 +483,7 @@ async function loadProducts() {
     allProducts = data.products;
     // Initial render
     renderProductsGrid(allProducts, productsGrid, selectedProducts);
-
-    // Search filter logic
-    if (searchInput) {
-      searchInput.oninput = function () {
-        const query = searchInput.value.trim().toLowerCase();
-        const filtered = allProducts.filter(product =>
-          product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query)
-        );
-        renderProductsGrid(filtered, productsGrid, selectedProducts);
-      };
-    }
+    // Removed searchInput logic for routine builder page
   } catch (error) {
     productsGrid.innerHTML = '<p>Sorry, we could not load the products.</p>';
     console.error(error);
@@ -783,10 +773,9 @@ chatForm.addEventListener("submit", async function (e) {
 
 /**
  * Helper for routine builder: create product card with "Show Description" button.
- * Students can use this in the routine builder page.
+ * This ensures the popup is always used for description in the routine builder.
  */
 function createRoutineProductCard(product) {
-  // Create product card
   const card = document.createElement('div');
   card.className = 'product-card';
   card.style.position = 'relative';
@@ -799,11 +788,20 @@ function createRoutineProductCard(product) {
     <button class="desc-btn">Show Description</button>
   `;
 
-  // Show description popup when button is clicked
-  card.querySelector('.desc-btn').onclick = (e) => {
+  // Remove any previous event listeners to avoid conflicts
+  const descBtn = card.querySelector('.desc-btn');
+  descBtn.onclick = (e) => {
     e.stopPropagation();
-    showProductPopup(product);
+    showProductPopup(product); // Always use popup for description
   };
+
+  // Selection logic for routine builder
+  card.onclick = () => {
+    toggleProduct(product);
+  };
+  if (selectedProducts.find(p => p.id === product.id)) {
+    card.classList.add('selected');
+  }
 
   return card;
 }
@@ -849,6 +847,18 @@ function loadRoutineBuilderProducts() {
 })();
 
 // --- DOMContentLoaded for Products Page Search ---
+document.addEventListener("DOMContentLoaded", function () {
+  // Only run on products.html
+  if (document.querySelector('.products-grid') && document.getElementById('productSearch')) {
+    setupProductsPageSearch();
+  }
+});
+
+// Initial load
+updateSelectedList();
+loadProducts();
+loadHomeSliderProducts();
+loadRoutineBuilderProducts(); // Add this for the routine builder page
 document.addEventListener("DOMContentLoaded", function () {
   // Only run on products.html
   if (document.querySelector('.products-grid') && document.getElementById('productSearch')) {

@@ -33,108 +33,14 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="products.html">Products</a></li>
+        <li><a href="routine-builder.html">Routine Builder</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
     <section class="featured-products" style="background: none; box-shadow: none;">
       <h2>Our Products</h2>
       <div class="products-grid">
-        <div class="product-card">
-          <img
-            src="img/Revitalift-Serum.avif"
-            alt="Product 1"
-          />
-          <h3>Revitalift Serum</h3>
-          <p>Our best-selling anti-aging serum for radiant skin.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Infallible-Foundation.jpg"
-            alt="Product 2"
-          />
-          <h3>Infallible Foundation</h3>
-          <p>Long-lasting, flawless coverage for every skin type.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/ElviveShampoo.jpg"
-            alt="Product 3"
-          />
-          <h3>Elvive Shampoo</h3>
-          <p>Strengthen and nourish your hair with our advanced formula.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Revitalift-Serum.avif"
-            alt="Product 1"
-          />
-          <h3>Revitalift Serum</h3>
-          <p>Our best-selling anti-aging serum for radiant skin.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Infallible-Foundation.jpg"
-            alt="Product 2"
-          />
-          <h3>Infallible Foundation</h3>
-          <p>Long-lasting, flawless coverage for every skin type.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/ElviveShampoo.jpg"
-            alt="Product 3"
-          />
-          <h3>Elvive Shampoo</h3>
-          <p>Strengthen and nourish your hair with our advanced formula.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Revitalift-Serum.avif"
-            alt="Product 1"
-          />
-          <h3>Revitalift Serum</h3>
-          <p>Our best-selling anti-aging serum for radiant skin.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Infallible-Foundation.jpg"
-            alt="Product 2"
-          />
-          <h3>Infallible Foundation</h3>
-          <p>Long-lasting, flawless coverage for every skin type.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/ElviveShampoo.jpg"
-            alt="Product 3"
-          />
-          <h3>Elvive Shampoo</h3>
-          <p>Strengthen and nourish your hair with our advanced formula.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Revitalift-Serum.avif"
-            alt="Product 1"
-          />
-          <h3>Revitalift Serum</h3>
-          <p>Our best-selling anti-aging serum for radiant skin.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/Infallible-Foundation.jpg"
-            alt="Product 2"
-          />
-          <h3>Infallible Foundation</h3>
-          <p>Long-lasting, flawless coverage for every skin type.</p>
-        </div>
-        <div class="product-card">
-          <img
-            src="img/ElviveShampoo.jpg"
-            alt="Product 3"
-          />
-          <h3>Elvive Shampoo</h3>
-          <p>Strengthen and nourish your hair with our advanced formula.</p>
-        </div>
+        <!-- Products will be loaded here by JavaScript -->
       </div>
     </section>
     <footer class="site-footer">
@@ -177,14 +83,28 @@
       </div>
     </div>
     <script src="script.js"></script>
-  </body>
-</html>
-          <button type="submit" id="sendBtn">
-            <span class="material-icons">send</span>
-          </button>
-        </form>
-      </div>
-    </div>
-    <script src="script.js"></script>
+    <script>
+      // Loads products from products.json and uses createProductCard for each product
+      document.addEventListener("DOMContentLoaded", async () => {
+        const productsGrid = document.querySelector('.products-grid');
+        productsGrid.innerHTML = '<p>Loading products...</p>';
+
+        try {
+          const response = await fetch('products.json');
+          const data = await response.json();
+          const products = data.products;
+
+          productsGrid.innerHTML = '';
+
+          // Use the reusable function from script.js
+          products.forEach(product => {
+            const card = createProductCard(product);
+            productsGrid.appendChild(card);
+          });
+        } catch (error) {
+          productsGrid.innerHTML = '<p>Sorry, we could not load the products.</p>';
+        }
+      });
+    </script>
   </body>
 </html>

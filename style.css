@@ -1,7 +1,8 @@
 /* === L'Oréal Brand Colors === */
 :root {
   --loreal-black: #231f20;
-  --loreal-gold: #bfa37c;
+  --loreal-gold: #e3a535;
+  --loreal-red: #ff003b;
   --loreal-white: #fff;
   --loreal-gray: #f7f7f7;
   --loreal-beige: #faf8f3;
@@ -40,7 +41,9 @@ body, .about-page {
   box-shadow: 0 2px 8px rgba(191, 163, 124, 0.07);
   padding: 1.2rem 1.2rem 2.2rem 1.2rem;
   text-align: center;
-  width: 220px;
+  width: 260px;
+  max-width: 260px;
+  min-width: 220px;
   position: relative;
   transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.2s;
   cursor: pointer;
@@ -91,8 +94,10 @@ body, .about-page {
     gap: 1.2rem;
   }
   .home-featured .product-card {
-    width: 170px;
-    padding: 1rem 1rem 2rem 1rem;
+    width: 95vw;
+    max-width: 95vw;
+    min-width: 0;
+    padding: 1rem 0.5rem 2rem 0.5rem;
   }
 }
 @media (max-width: 700px) {
@@ -106,6 +111,7 @@ body, .about-page {
   }
   .home-featured .product-card {
     width: 95vw;
+    max-width: 95vw;
     min-width: 0;
     padding: 1rem 0.5rem 2rem 0.5rem;
   }
@@ -189,6 +195,13 @@ body.about-page {
 .nav-links.about-links a:hover {
   color: var(--loreal-gold);
   border-bottom: 2px solid var(--loreal-gold);
+}
+.nav-links a.active {
+  color: #fff;
+  background-color: #0072c6;
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none;
 }
 @media (max-width: 700px) {
   .about-section h1 {
@@ -304,6 +317,13 @@ body {
   color: var(--loreal-gold);
   border-bottom: 2px solid var(--loreal-gold);
 }
+.nav-links a.active {
+  color: #fff;
+  background-color: #0072c6;
+  border-radius: 4px;
+  padding: 4px 12px;
+  text-decoration: none;
+}
 
 /* Hero Section */
 .hero {
@@ -352,10 +372,15 @@ body {
   background: var(--loreal-white);
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-  padding: 1.2rem;
+  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
   text-align: center;
-  width: 220px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  width: 260px;
+  max-width: 260px;
+  min-width: 220px;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.2s;
+  cursor: pointer;
+  overflow: hidden;
 }
 .product-card:hover {
   transform: translateY(-6px) scale(1.03);
@@ -869,4 +894,325 @@ a, button {
   .h-48, .h-64 {
     height: 10rem;
   }
+}
+
+/* Slider Styles */
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+  max-width: 400px;
+}
+.slider {
+  width: 250px;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-btn {
+  background: #bfa37c;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* === Routine Builder Page Styles === */
+.routine-section,
+.contact-section {
+  max-width: 700px;
+  margin: 5.5rem auto 2rem auto;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  padding: 2.5rem 2rem;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.routine-section h1,
+.contact-section h1 {
+  color: var(--loreal-black);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.routine-section h2,
+.contact-section h2 {
+  font-size: 1.5rem;
+  color: var(--loreal-gold);
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.products-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.product-card {
+  background: var(--loreal-white);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(191, 163, 124, 0.07);
+  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
+  text-align: center;
+  width: 260px;
+  max-width: 260px;
+  min-width: 220px;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1);
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--loreal-gold);
+}
+
+.product-card p {
+  font-size: 0.98rem;
+  color: #444;
+}
+
+.product-card:hover {
+  transform: scale(1.045) translateY(-4px);
+  box-shadow: 0 8px 24px rgba(191, 163, 124, 0.13);
+}
+
+/* Highlight selected product card in grid */
+.product-card.selected {
+  border: 3px solid var(--loreal-red);
+  box-shadow: 0 0 0 4px rgba(255,0,59,0.12);
+}
+
+/* Use brand colors for buttons */
+.routine-btn,
+.remove-btn,
+.desc-btn {
+  background: var(--loreal-gold);
+  color: var(--loreal-red);
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(191, 163, 124, 0.07);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.routine-btn:hover,
+.remove-btn:hover,
+.desc-btn:hover {
+  background: var(--loreal-red);
+  color: var(--loreal-gold);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Bubble style for selected products (already present) */
+.selected-item {
+  display: inline-flex;
+  align-items: center;
+  background: var(--loreal-gold);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  margin: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(191,163,124,0.07);
+  transition: background 0.2s, color 0.2s;
+}
+
+.selected-item button.remove-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0 0.3rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.selected-item button.remove-btn:hover {
+  background: #fff;
+  color: var(--loreal-gold);
+}
+
+/* Consistent product card sizing for all grids and pages */
+.product-card {
+  background: var(--loreal-white);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(191, 163, 124, 0.07);
+  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
+  text-align: center;
+  width: 260px;
+  max-width: 260px;
+  min-width: 220px;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.2s;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Remove grid-specific overrides for .product-card */
+.home-featured .product-card,
+.products-scroll-box .product-card {
+  width: 260px;
+  max-width: 260px;
+  min-width: 220px;
+  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
+}
+
+/* Responsive: on small screens, cards fill the grid width */
+@media (max-width: 900px) {
+  .product-card,
+  .home-featured .product-card,
+  .products-scroll-box .product-card {
+    width: 95vw;
+    max-width: 95vw;
+    min-width: 0;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+  }
+}
+@media (max-width: 700px) {
+  .product-card,
+  .home-featured .product-card,
+  .products-scroll-box .product-card {
+    width: 95vw;
+    max-width: 95vw;
+    min-width: 0;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+  }
+}
+
+/* Selected product bubble style for routine builder */
+.selected-item {
+  display: inline-flex;
+  align-items: center;
+  background: var(--loreal-gold);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  margin: 0.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(191,163,124,0.07);
+  transition: background 0.2s, color 0.2s;
+}
+
+.selected-item button.remove-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0 0.3rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.selected-item button.remove-btn:hover {
+  background: #fff;
+  color: var(--loreal-gold);
+}
+
+/* Generated Routine Section: background when routine is present */
+.routine-output-section.has-routine {
+  background: #fff7ea;
+  border: 2px solid var(--loreal-gold);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(227, 165, 53, 0.09);
+  padding: 1.2rem;
+  transition: background 0.3s, border 0.3s;
+}
+
+/* RTL support for main layout */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+/* RTL: Product grid and cards */
+[dir="rtl"] .products-grid {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .product-card {
+  text-align: right;
+}
+[dir="rtl"] .product-card.selected {
+  border-left: none;
+  border-right: 3px solid var(--loreal-red);
+}
+
+/* RTL: Selected products bubbles */
+[dir="rtl"] .selected-list {
+  justify-content: flex-end;
+}
+[dir="rtl"] .selected-item {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .selected-item button.remove-btn {
+  margin-left: 0;
+  margin-right: 0.7rem;
+}
+
+/* RTL: Routine builder main sections */
+[dir="rtl"] .routine-builder-main {
+  flex-direction: row-reverse;
+}
+
+/* RTL: Routine output section */
+[dir="rtl"] .routine-output-section {
+  text-align: right;
+}
+
+/* RTL: Chatbot window and messages */
+[dir="rtl"] #chatbot-window,
+[dir="rtl"] .chatbot-header,
+[dir="rtl"] .chatbot-body {
+  direction: rtl;
+}
+[dir="rtl"] .msg.user {
+  align-self: flex-start;
+  text-align: left;
+}
+[dir="rtl"] .msg.ai {
+  align-self: flex-end;
+  text-align: right;
+}
+[dir="rtl"] .msg.user::after {
+  left: -10px;
+  right: auto;
+  border-width: 8px 10px 8px 0;
+  border-color: transparent var(--loreal-gold) transparent transparent;
+}
+[dir="rtl"] .msg.ai::after {
+  right: -10px;
+  left: auto;
+  border-width: 8px 0 8px 10px;
+  border-color: transparent transparent transparent #fff7ea;
 }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>L'Oréal Routine Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Add Material Icons font for chatbot icon -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Add Montserrat font for consistent text styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="main-nav">
+      <div class="logo-area">
+        <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="routine-builder.html">Routine Builder</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="routine-section contact-section" style="max-width: 700px; margin: 5.5rem auto 2rem auto; background: var(--loreal-white); box-shadow: 0 2px 12px rgba(191, 163, 124, 0.08); padding: 2.5rem 2rem; border-radius: 18px; text-align: center;">
+      <header>
+        <h1 style="color: var(--loreal-black); font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: 1px;">L'Oréal Routine Builder</h1>
+        <p style="font-size: 1.15rem; color: #444; margin-bottom: 1.5rem;">Build your personalized beauty routine with L'Oréal products</p>
+      </header>
+
+      <div class="routine-builder-main" style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
+        <!-- Selected Products Section -->
+        <section class="selected-products" style="flex: 1 1 320px; min-width: 280px;">
+          <h3>Selected Products</h3>
+          <div class="selected-list" id="selectedList"></div>
+          <button class="routine-btn" id="generateRoutineBtn">Generate Routine</button>
+          <button class="remove-btn" id="clearSelectionsBtn" title="Clear All">Clear All</button>
+        </section>
+        <!-- Generated Routine Section -->
+        <section class="routine-output-section" style="flex: 2 1 320px; min-width: 280px;">
+          <h3>Your Personalized Routine</h3>
+          <div class="routine-output" id="routineOutput"></div>
+        </section>
+      </div>
+
+      <div class="container">
+        <h2>Select Products</h2>
+        <div class="products-scroll-box">
+          <div class="products-grid" id="productsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Floating Chatbot Icon -->
+  <div id="chatbot-icon" title="Chat with us">
+    <span class="material-icons">smart_toy</span>
+  </div>
+
+  <!-- Chatbot Window (hidden by default) -->
+  <div id="chatbot-window">
+    <div class="chatbot-header">
+      <span>Chat with L'Oréal</span>
+      <div>
+        <button id="close-btn" title="Close" aria-label="Close">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+    </div>
+    <div class="chatbot-body">
+      <div id="chatWindow" class="chat-window">
+        <div class="msg ai">👋 Hello! My name is Lily, and I'm your L'Oréal virtual assistant! <br> How can I help you today?</div>
+      </div>
+      <form id="chatForm" class="chat-form">
+        <label for="userInput" class="visually-hidden">Message</label>
+        <input
+          id="userInput"
+          name="userInput"
+          type="text"
+          placeholder="Ask me anything…"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="sendBtn">
+          <span class="material-icons">send</span>
+        </button>
+      </form>
+    </div>
+  </div>
+<footer class="site-footer">
+      <p>&copy; 2025 L'Oréal. All rights reserved.</p>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <span>|</span>
+        <a href="#">Terms of Use</a>
+        <span>|</span>
+        <a href="mailto:support@loreal.com">support@loreal.com</a>
+        <span>|</span>
+        <a href="https://www.loreal.com/en/" target="_blank" rel="noopener">Official Website</a>
+      </nav>
+      <div style="margin-top: 10px; color: #bfa37c; font-size: 1.1rem;">
+        Made with <span style="color: #e25555;">&#10084;</span> by the L'Oréal Team
+      </div>
+    </footer>
+  <script src="script.js"></script>
+</body>
+</html>

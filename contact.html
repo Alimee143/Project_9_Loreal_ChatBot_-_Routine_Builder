@@ -33,6 +33,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="products.html">Products</a></li>
+        <li><a href="routine-builder.html">Routine Builder</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -92,5 +93,17 @@
       </div>
     </div>
     <script src="script.js"></script>
+  </body>
+</html>
+      (function() {
+        const rtlLangs = ['ar', 'he', 'fa', 'ur'];
+        const lang = (navigator.language || navigator.userLanguage || '').slice(0,2).toLowerCase();
+        if (rtlLangs.includes(lang)) {
+          document.body.setAttribute('dir', 'rtl');
+        } else {
+          document.body.setAttribute('dir', 'ltr');
+        }
+      })();
+    </script>
   </body>
 </html>

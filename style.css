@@ -2,7 +2,6 @@
 :root {
   --loreal-black: #231f20;
   --loreal-gold: #e3a535;
-  --loreal-red: #ff003b;
   --loreal-white: #fff;
   --loreal-gray: #f7f7f7;
   --loreal-beige: #faf8f3;
@@ -1002,7 +1001,7 @@ a, button {
 
 /* Highlight selected product card in grid */
 .product-card.selected {
-  border: 3px solid var(--loreal-red);
+  border: 3px solid var(--loreal-black);
   box-shadow: 0 0 0 4px rgba(255,0,59,0.12);
 }
 
@@ -1011,7 +1010,7 @@ a, button {
 .remove-btn,
 .desc-btn {
   background: var(--loreal-gold);
-  color: var(--loreal-red);
+  color: var(--loreal-black);
   border: none;
   border-radius: 8px;
   padding: 0.7rem 1.5rem;
@@ -1025,7 +1024,7 @@ a, button {
 .routine-btn:hover,
 .remove-btn:hover,
 .desc-btn:hover {
-  background: var(--loreal-red);
+  background: var(--loreal-black);
   color: var(--loreal-gold);
   transform: translateY(-2px) scale(1.04);
 }
@@ -1063,7 +1062,9 @@ a, button {
 }
 
 /* Consistent product card sizing for all grids and pages */
-.product-card {
+.product-card,
+.home-featured .product-card,
+.products-scroll-box .product-card {
   background: var(--loreal-white);
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(191, 163, 124, 0.07);
@@ -1076,15 +1077,6 @@ a, button {
   transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.2s;
   cursor: pointer;
   overflow: hidden;
-}
-
-/* Remove grid-specific overrides for .product-card */
-.home-featured .product-card,
-.products-scroll-box .product-card {
-  width: 260px;
-  max-width: 260px;
-  min-width: 220px;
-  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
 }
 
 /* Responsive: on small screens, cards fill the grid width */
@@ -1165,7 +1157,7 @@ a, button {
 }
 [dir="rtl"] .product-card.selected {
   border-left: none;
-  border-right: 3px solid var(--loreal-red);
+  border-right: 3px solid var(--loreal-black);
 }
 
 /* RTL: Selected products bubbles */
@@ -1210,6 +1202,13 @@ a, button {
   border-width: 8px 10px 8px 0;
   border-color: transparent var(--loreal-gold) transparent transparent;
 }
+[dir="rtl"] .msg.ai::after {
+  right: -10px;
+  left: auto;
+  border-width: 8px 0 8px 10px;
+  border-color: transparent transparent transparent #fff7ea;
+}
+
 [dir="rtl"] .msg.ai::after {
   right: -10px;
   left: auto;

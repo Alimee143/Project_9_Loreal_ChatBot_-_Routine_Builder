@@ -95,15 +95,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-      (function() {
-        const rtlLangs = ['ar', 'he', 'fa', 'ur'];
-        const lang = (navigator.language || navigator.userLanguage || '').slice(0,2).toLowerCase();
-        if (rtlLangs.includes(lang)) {
-          document.body.setAttribute('dir', 'rtl');
-        } else {
-          document.body.setAttribute('dir', 'ltr');
-        }
-      })();
-    </script>
-  </body>
-</html>

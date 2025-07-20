@@ -61,7 +61,24 @@ let messages = [
 function addMessage(text, sender) {
   const msgDiv = document.createElement("div");
   msgDiv.className = "msg " + sender;
-  msgDiv.textContent = text;
+
+  // Convert markdown-style links to HTML clickable links for beginners
+  // Example: ([prnewswire.com](https://...))
+  const linkRegex = /\(\[([^\]]+)\]\((https?:\/\/[^\)]+)\)\)/g;
+  let htmlText = text.replace(linkRegex, (match, label, url) => {
+    return `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+  });
+
+  // Basic markdown formatting for readability
+  // Bold: **text**
+  htmlText = htmlText.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+  // Italic: *text*
+  htmlText = htmlText.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+  // Simple line breaks
+  htmlText = htmlText.replace(/\n/g, '<br>');
+
+  // Set HTML so links and formatting are visible
+  msgDiv.innerHTML = htmlText;
   chatWindowDiv.appendChild(msgDiv);
   chatWindowDiv.scrollTop = chatWindowDiv.scrollHeight;
 }
@@ -127,7 +144,7 @@ simpleChatForm.addEventListener("submit", async function (e) {
 
 /**
  * Helper function to show a popup with product details.
- * Used by both index.html and products.html.
+ * Used by both index.html, products.html, and routine-builder.html.
  */
 function showProductPopup(product) {
   // Create overlay for popup
@@ -177,7 +194,7 @@ function showProductPopup(product) {
 /**
  * Helper function to create a product card with banner and popup logic.
  * Returns a DOM element for the card.
- * Used by both index.html and products.html.
+ * Used by both index.html and products.html and now routine-builder.html.
  */
 function createProductCard(product) {
   // Create product card
@@ -352,6 +369,52 @@ async function loadHomeSliderProducts() {
     console.error(error);
   }
 }
+
+// Home page slider logic for beginners
+document.addEventListener("DOMContentLoaded", async () => {
+  // Get slider DOM elements
+  const slider = document.getElementById('homeProductSlider');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Only run if slider exists (home page)
+  if (!slider || !prevBtn || !nextBtn) return;
+
+  let homeProducts = [];
+  let currentSlide = 0;
+
+  // Helper to show one product in the slider
+  function showHomeProduct(index) {
+    slider.innerHTML = '';
+    const product = homeProducts[index];
+    if (!product) return;
+    // Use the same card style as other pages
+    const card = createProductCard(product);
+    slider.appendChild(card);
+  }
+
+  // Fetch products from products.json
+  try {
+    const response = await fetch('products.json');
+    const data = await response.json();
+    homeProducts = data.products || [];
+    if (homeProducts.length > 0) {
+      showHomeProduct(currentSlide);
+      prevBtn.onclick = () => {
+        currentSlide = (currentSlide - 1 + homeProducts.length) % homeProducts.length;
+        showHomeProduct(currentSlide);
+      };
+      nextBtn.onclick = () => {
+        currentSlide = (currentSlide + 1) % homeProducts.length;
+        showHomeProduct(currentSlide);
+      };
+    } else {
+      slider.innerHTML = '<p>No products found.</p>';
+    }
+  } catch (error) {
+    slider.innerHTML = '<p>Sorry, could not load products.</p>';
+  }
+});
 
 // --- Routine Builder Logic for beginners ---
 

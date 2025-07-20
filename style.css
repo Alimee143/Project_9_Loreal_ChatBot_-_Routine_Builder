@@ -550,6 +550,11 @@ body {
   position: relative;
   font-size: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  padding: 14px 18px;
+  background-clip: padding-box;
 }
 .msg.user {
   background: var(--loreal-gold);
@@ -570,23 +575,33 @@ body {
   margin-left: 0;
   text-align: left;
 }
-.msg.user::after {
-  content: '';
-  position: absolute;
-  right: -10px;
-  top: 16px;
-  border-width: 8px 0 8px 10px;
-  border-style: solid;
-  border-color: transparent transparent transparent var(--loreal-gold);
+.msg.ai a {
+  color: var(--loreal-gold);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s;
 }
-.msg.ai::after {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 16px;
-  border-width: 8px 10px 8px 0;
-  border-style: solid;
-  border-color: transparent #fff7ea transparent transparent;
+.msg.ai a:hover {
+  color: var(--loreal-black);
+  background: var(--loreal-gold);
+  text-decoration: underline;
+}
+.msg ul, .msg ol {
+  margin: 0.7em 0 0.7em 1.2em;
+  padding-left: 1.2em;
+  font-size: 1rem;
+}
+.msg li {
+  margin-bottom: 0.3em;
+  line-height: 1.6;
+}
+.msg strong {
+  color: var(--loreal-black);
+  font-weight: 700;
+}
+.msg em {
+  color: var(--loreal-gold);
+  font-style: italic;
 }
 
 /* Visually hidden for accessibility */
@@ -997,6 +1012,17 @@ a, button {
 .product-card:hover {
   transform: scale(1.045) translateY(-4px);
   box-shadow: 0 8px 24px rgba(191, 163, 124, 0.13);
+}
+
+/* Products section in routine builder: fixed height and scroll */
+.products-scroll-section {
+  height: 5000px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(191,163,124,0.07);
+  background: #fff;
+  padding: 1rem 0.5rem;
 }
 
 /* Highlight selected product card in grid */
